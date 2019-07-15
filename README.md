@@ -1,3 +1,8 @@
+#Original Author/Repo
+[owenwater/alfred-cal](https://github.com/owenwater/alfred-cal)
+
+This version fixes the "Incompatible with macOS Sierra 10.12.4+" issue.
+
 #Calendar
 
 Displays a monthly calendar with Alfred Workflow.
