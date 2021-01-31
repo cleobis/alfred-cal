@@ -1,9 +1,9 @@
 #!/usr/bin/python
 # encoding: utf-8
 
-import tkFont
+#import tkFont
 import plistlib
-import Tkinter as tk
+#import Tkinter as tk
 
 plist = "/preferences/appearance/prefs.plist"
 theme = "theme.plist"
@@ -13,7 +13,7 @@ DEFAULT_SIZE = 16
 
 class Format(object):
     def __init__(self, key, path):
-        t = tk.Tk()
+        #t = tk.Tk()
         self.font = self._load_font(key, path)
 
     def _load_font(self, key, path):
@@ -24,7 +24,8 @@ class Format(object):
                 font, size = self._load_plist(key, theme)
             except:
                 font, size = DEFAULT_FONT, DEFAULT_SIZE
-        return tkFont.Font(family=font, size=size)
+        #return tkFont.Font(family=font, size=size)
+        return None
     
     def _load_plist(self, key, path):
         pref = plistlib.readPlist(path)
@@ -33,14 +34,17 @@ class Format(object):
         return font, size
 
     def format(self, weeks, title):
-        pos = [self.font.measure(title[:title.find(day)]) for day in title.split()]
-        space_width = self.font.measure(u' ')
+        #pos = [self.font.measure(title[:title.find(day)]) for day in title.split()]
+        pos = [title.find(day) for day in title.split()]
+        space_width = 1 #self.font.measure(u' ')
         str_list = []
         for week in weeks:
             str = ""
             for i, day in enumerate(week):
-                number_of_spaces = (pos[i] - self.font.measure(str)) / space_width
-                if (pos[i] - self.font.measure(str)) % space_width > space_width / 2:
+                # number_of_spaces = (pos[i] - self.font.measure(str)) / space_width
+                number_of_spaces = (pos[i] - len(str)) / space_width
+                #if (pos[i] - self.font.measure(str)) % space_width > space_width / 2:
+                if (pos[i] - len(str)) % space_width > space_width / 2:
                     number_of_spaces += 1
                 str += u' ' * number_of_spaces
                 str += day
