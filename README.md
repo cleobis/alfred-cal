@@ -13,7 +13,7 @@ Displays a monthly calendar with Alfred Workflow.
 
 ## Install
 - Have access to the Alfred [Powerpack](http://www.alfredapp.com/powerpack/).
-- Download Calendar-<version>.alfredworkflow from  the [lastest release](https://github.com/cleobis/alfred-cal/releases/latest).
+- Download Calendar-&lt;version&gt;.alfredworkflow from  the [lastest release](https://github.com/cleobis/alfred-cal/releases/latest).
 - Open the file. Alfred will automatically install it.
 
 ## Usage
