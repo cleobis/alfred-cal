@@ -34,7 +34,7 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string>Owen Min</string>
+	<string>Owen Min, updated by Chris Kimmel, Mark Patterson</string>
 	<key>description</key>
 	<string></string>
 	<key>disabled</key>
@@ -249,8 +249,8 @@ if __name__=="__main__":
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>1.4.0</string>
+	<string>1.5.0</string>
 	<key>webaddress</key>
-	<string></string>
+	<string>https://github.com/cleobis/alfred-cal</string>
 </dict>
 </plist>
