@@ -91,13 +91,14 @@ class Format(object):
 
     def format(self, weeks, title):
         pos = [self.font.measure(title[:title.find(day)]) for day in title.split()]
-        space_width = self.font.measure(u' ')
+        space = u'\u200a' # hair space
+        space_width = self.font.measure(space)
         str_list = []
         for week in weeks:
             str = ""
             for i, day in enumerate(week):
                 number_of_spaces = (pos[i] - self.font.measure(str)) / space_width
-                str += u' ' * int(round(number_of_spaces))
+                str += space * int(round(number_of_spaces))
                 str += day
             str_list.append(str)
         return str_list
