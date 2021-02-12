@@ -5,7 +5,7 @@ Original repo: [owenwater/alfred-cal](https://github.com/owenwater/alfred-cal)
 
 Updates from: [oorahduc/alfred-cal](https://github.com/oorahduc/alfred-cal) for fixes to the "Incompatible with macOS Sierra 10.12.4+" issue.
 
-This repo fixes a crash on macOS Big Sur 11.1. Currently the calendar formatting needs improvement.
+This repo fixes a crash on macOS Big Sur 11.1 and formatting issues.
 
 ## Calendar
 
