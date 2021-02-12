@@ -56,7 +56,7 @@ class Cal(object):
         if day == date.today() and self.highlight_today:
             return unichr(0x2605)
         else:
-            return unicode(day.day).zfill(2)
+            return unicode(day.day)
 
     def center(self, texts):
         texts[0] = texts[0].center(len(texts[1]))
