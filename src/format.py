@@ -49,12 +49,12 @@ class FontWidthCalcObjC(object):
         self._max_size = NSMakeSize(sys.float_info.max, sys.float_info.max)
         self._options = 1 << 3 # NSStringDrawingOptions.NSStringDrawingUsesDeiceMetrics
             # https://developer.apple.com/documentation/uikit/nsstringdrawingoptions?language=objc
-        self._attributes = NSMutableDictionary.dictionary()
-        self._attributes.setObject_forKey_(NSFontAttributeName, font)
         if font == "<System>":
-            self.font = NSFont.systemFontOfSize_(size)
+            nsfont = NSFont.systemFontOfSize_(size)
         else:
-            self.font = NSFont.fontWithName_size_(font, size)
+            nsfont = NSFont.fontWithName_size_(font, size)
+        self._attributes = NSMutableDictionary.dictionary()
+        self._attributes.setObject_forKey_(nsfont, NSFontAttributeName)
         
         self._terminator = '1'
         self._terminator_width = self._measure(self._terminator)
