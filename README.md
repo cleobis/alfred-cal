@@ -48,7 +48,7 @@ Workflow formatting is based on the current system default font. The functionali
 ## Development
 ### Creating releases
 1. Update the info.plist and versions files with the version number.
-2. Upate the embedded readme in info.plist.
+2. Update the embedded readme in info.plist.
 3. Push a tag with the version name (e.g. "v1.4.0") to GitHub
 4. GitHub will automatically build the release Check the Actions tab to monitor progress
 5. Once the build is complete, navigate to the releases page. Edit the draft release to add a description. Publish it.
