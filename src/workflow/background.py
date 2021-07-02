@@ -8,8 +8,8 @@
 # Created on 2014-04-06
 #
 
-"""
-This module provides an API to run commands in background processes.
+"""This module provides an API to run commands in background processes.
+
 Combine with the :ref:`caching API <caching-data>` to work from cached data
 while you fetch fresh data in the background.
 
@@ -102,10 +102,7 @@ def _job_pid(name):
         if _process_exists(pid):
             return pid
 
-    try:
-        os.unlink(pidfile)
-    except Exception:  # pragma: no cover
-        pass
+    os.unlink(pidfile)
 
 
 def is_running(name):
