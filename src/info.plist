@@ -57,7 +57,7 @@
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>102</integer>
 				<key>keyword</key>
 				<string>cal</string>
 				<key>queuedelaycustom</key>
@@ -71,13 +71,7 @@
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>#!/usr/bin/python
-
-from main import Main
-
-if __name__=="__main__":
-    main = Main("{query}")
-    main.execute()</string>
+				<string>/usr/bin/python main.py "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -87,7 +81,7 @@ if __name__=="__main__":
 				<key>title</key>
 				<string>Calendar</string>
 				<key>type</key>
-				<integer>3</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -104,21 +98,15 @@ if __name__=="__main__":
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>0</integer>
+				<integer>102</integer>
 				<key>script</key>
-				<string>#!/usr/bin/python
-# encoding: utf-8
-
-from open import open_cal
-
-if __name__=="__main__":
-    open_cal("{query}")</string>
+				<string>/usr/bin/python open.py "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>3</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -141,7 +129,7 @@ if __name__=="__main__":
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
-				<integer>68</integer>
+				<integer>102</integer>
 				<key>keyword</key>
 				<string>calconfig</string>
 				<key>queuedelaycustom</key>
@@ -155,13 +143,7 @@ if __name__=="__main__":
 				<key>runningsubtext</key>
 				<string></string>
 				<key>script</key>
-				<string>#!/usr/bin/python
-
-from config import Config
-
-if __name__=="__main__":
-    config = Config("{query}")
-    config.execute()</string>
+				<string>/usr/bin/python config.py "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -171,7 +153,7 @@ if __name__=="__main__":
 				<key>title</key>
 				<string>Calendar config</string>
 				<key>type</key>
-				<integer>3</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -188,22 +170,15 @@ if __name__=="__main__":
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
-				<integer>68</integer>
+				<integer>102</integer>
 				<key>script</key>
-				<string>#!/usr/bin/python
-# encoding: utf-8
-
-from config import Config
-
-if __name__=="__main__":
-    config = Config("{query}")
-    config.set_value()</string>
+				<string>/usr/bin/python config.py -set "{query}"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
-				<integer>3</integer>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
@@ -214,7 +189,37 @@ if __name__=="__main__":
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string># Alfred Calendar
+
+## Original Author/Repo
+Original repo: [owenwater/alfred-cal](https://github.com/owenwater/alfred-cal)
+
+Updates from: [oorahduc/alfred-cal](https://github.com/oorahduc/alfred-cal) for fixes to the "Incompatible with macOS Sierra 10.12.4+" issue.
+
+[This repo](https://github.com/cleobis/alfred-cal) fixes a crash on macOS Big Sur 11.1 and formatting issues.
+
+## Calendar
+
+Displays a monthly calendar with Alfred Workflow.
+
+## Usage
+- `cal [month [year]] [&lt;] [&gt;]`
+	- `↕` Choose a week.
+	- `enter ↵` Open [Supported Calendar Software](#support) with week view on selected week.
+	- `&lt;, &gt;` Display calendar of previous/next month.
+	- `[month [year]]` Display calendar with specific month and year. `month` can be numbers or English words.
+
+- `calconfig` More configuration options.
+
+## Supported Calendar Software
+- BusyCal
+- Fantastical 2
+- Google Calendar
+- OS X Calendar
+
+## Format
+Workflow formatting is based on the current system default font. The functionality to adapt to different font themes is currently not working.
+</string>
 	<key>uidata</key>
 	<dict>
 		<key>3C835BC3-638B-4577-AEDC-E23EEEA4A032</key>
@@ -249,7 +254,7 @@ if __name__=="__main__":
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>1.5.1</string>
+	<string>1.5.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/cleobis/alfred-cal</string>
 </dict>

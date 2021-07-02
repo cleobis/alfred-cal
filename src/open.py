@@ -22,7 +22,7 @@ def open_cal(arg):
         from workflow import Workflow
         wf = Workflow()
         
-        default_software = Config('').load_default(SOFTWARE)
+        default_software = Config().load_default(SOFTWARE)
         software_name = wf.settings.get(SOFTWARE, default_software)
         file_name = applescript_name_tem % (software_name)
 

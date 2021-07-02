@@ -135,5 +135,5 @@ class InvalidArgumentError(Exception):
     pass
 
 if __name__ == "__main__":
-    main = Main(" ".join(sys.argv[1:]))
+    main = Main()
     main.execute()

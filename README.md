@@ -5,7 +5,7 @@ Original repo: [owenwater/alfred-cal](https://github.com/owenwater/alfred-cal)
 
 Updates from: [oorahduc/alfred-cal](https://github.com/oorahduc/alfred-cal) for fixes to the "Incompatible with macOS Sierra 10.12.4+" issue.
 
-This repo fixes a crash on macOS Big Sur 11.1 and formatting issues.
+[This repo](https://github.com/cleobis/alfred-cal) fixes a crash on macOS Big Sur 11.1 and formatting issues.
 
 ## Calendar
 
@@ -33,7 +33,7 @@ Displays a monthly calendar with Alfred Workflow.
 - OS X Calendar
 
 ## Format
-Workflow adjusts formatting based on font and font size of Alfred, please [open a ticket](https://github.com/owenwater/alfred-cal/issues/new) if there is any formatting issue.
+Workflow formatting is based on the current system default font. The functionality to adapt to different font themes is currently not working.
 
 
 ## Screenshots
@@ -47,8 +47,9 @@ Workflow adjusts formatting based on font and font size of Alfred, please [open 
 
 ## Development
 ### Creating releases
-1. Update the info.plist with the version number.
-2. Push a tag with the version name (e.g. "v1.4.0") to GitHub
-3. GitHub will automatically build the release Check the Actions tab to monitor progress
-4. Once the build is complete, navigate to the releases page. Edit the draft release to add a description. Publish it.
+1. Update the info.plist and versions files with the version number.
+2. Upate the embedded readme in info.plist.
+3. Push a tag with the version name (e.g. "v1.4.0") to GitHub
+4. GitHub will automatically build the release Check the Actions tab to monitor progress
+5. Once the build is complete, navigate to the releases page. Edit the draft release to add a description. Publish it.
 

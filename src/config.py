@@ -40,8 +40,6 @@ class Config(Base):
         self._show_list()
 
     def set_value(self):
-        from workflow import Workflow
-        self.wf = Workflow()
         if self.args == self.open_config_file:
             self._open_file(self.wf.settings_path)
         else:
@@ -155,5 +153,9 @@ class InvalidInputError(Exception):
 
 if __name__ == "__main__":
     import sys
-    c = Config(' '.join(sys.argv[1:]))
-    c.execute()
+    c = Config()
+    if "-set" in sys.argv:
+        # Save settings
+        c.set_value()
+    else:
+        c.execute()
