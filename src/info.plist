@@ -218,7 +218,7 @@ Displays a monthly calendar with Alfred Workflow.
 - OS X Calendar
 
 ## Format
-Workflow formatting is based on the current system default font. The functionality to adapt to different font themes is currently not working.
+The workflow should automatically adapt to the current theme font.
 </string>
 	<key>uidata</key>
 	<dict>
@@ -254,7 +254,7 @@ Workflow formatting is based on the current system default font. The functionali
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>1.5.2</string>
+	<string>1.5.3</string>
 	<key>webaddress</key>
 	<string>https://github.com/cleobis/alfred-cal</string>
 </dict>

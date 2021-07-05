@@ -8,14 +8,16 @@ from format import Format
 
 class Cal(object):
     
-    def __init__(self, settings, key, path):
+    def __init__(self, settings, theme_uid, preference_path, log=None):
         self.weekdays_name = settings["weekdays"].split()
         self.month_name = settings["month"].split()
         self.width = int(settings["width"])
         self.highlight_today = settings["highlight_today"]
 
-        self.key = key
-        self.path = path
+        self.theme_uid = theme_uid
+        self.preference_path = preference_path
+        
+        self.log = log
     
     def get_weeks(self, year, month, first_weekday):
         cal = calendar.Calendar(first_weekday)
@@ -25,7 +27,7 @@ class Cal(object):
         texts = []
         texts.append(self.month_text(year, month))
         texts.append(self.week_text(first_weekday))
-        format = Format(self.key, self.path)
+        format = Format(self.theme_uid, self.preference_path, self.log)
         texts += format.format(self.get_cal(self.get_weeks(year, month, first_weekday)), texts[-1])
         return self.center(texts)
 
@@ -67,8 +69,8 @@ class Cal(object):
 
 
 if __name__ == "__main__":
-    key = "alfred.theme.custom.A1911D25-FB72-4E1C-9180-7A8A71DB327F"
-    path = "/Users/owen/Library/Application Support/Alfred 2/Alfred.alfredpreferences"
-    c = Cal({}, key, path)
+    theme_uid = "alfred.theme.custom.A1911D25-FB72-4E1C-9180-7A8A71DB327F"
+    preference_path = "/Users/owen/Library/Application Support/Alfred 2/Alfred.alfredpreferences"
+    c = Cal({}, theme_uid, preference_path)
     for line in c.get_weeks_text(2014, 11, 6):
         print line

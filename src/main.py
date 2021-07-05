@@ -28,7 +28,7 @@ class Main(Base):
         self.init_settings()
         self.pattern = re.compile('^(%s|%s)*$' % (self.minus, self.plus))
 
-        cal = Cal(wf.settings, wf.alfred_env['theme'], wf.alfred_env['preferences'])
+        cal = Cal(wf.settings, wf.alfred_env['theme'], wf.alfred_env['preferences'], self.log)
         try:
             year, month = self.handle_arg()
         except InvalidArgumentError as e:

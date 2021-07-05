@@ -33,8 +33,7 @@ Displays a monthly calendar with Alfred Workflow.
 - OS X Calendar
 
 ## Format
-Workflow formatting is based on the current system default font. The functionality to adapt to different font themes is currently not working.
-
+The workflow should automatically adapt to the current theme font.
 
 ## Screenshots
 ![screenshot1](screenshots/screenshot1.png?raw=true)

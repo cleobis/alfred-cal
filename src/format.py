@@ -69,24 +69,109 @@ class FontWidthCalcObjC(object):
 
 
 class Format(object):
-    def __init__(self, key, path):
-        self.font = self._load_font(key, path)
+    def __init__(self, theme_uid, preference_path, log=None):
+        self.log = log
+        self.font = self._load_font(theme_uid, preference_path)
         
-    def _load_font(self, key, path):
+    def _load_font(self, theme_uid, preference_path):
         try:
-            font, size = self._load_plist(key, path + plist)
-        except:
-            try:
-                font, size = self._load_plist(key, theme)
-            except:
-                font, size = DEFAULT_FONT, DEFAULT_SIZE
-        #return FontWidthCalcTk(font, size)
+            theme_path = self.theme_path_from_id(theme_uid, preference_path)
+        except Exception as err:
+            self.log and self.log.error("Unable to find theme file for {}, preference path \"{}\"".format(theme_uid, preference_path))
+            theme_path = None
+        
+        try:
+            font, size = self.read_theme_font_name_size(theme_path)
+        except Exception as err:
+            font = None
+            self.log and self.log.error("Unable to parse theme file \"{}\". Error:\n{}".format(theme_path, err))
+            
+        if theme_path is None or font is None:
+            font, size = DEFAULT_FONT, DEFAULT_SIZE
+        
+        self.log and self.log.info("Font: {} {}pt".format(font, size))
+        
         return FontWidthCalcObjC(font, size)
     
-    def _load_plist(self, key, path):
-        pref = plistlib.readPlist(path)
-        font = pref['themes'][key]['resultTextFont']
-        size = pref['themes'][key]['resultTextFontSize'] * 4 + 8
+    def theme_path_from_id(self, theme_uid, preference_path):
+        """Return the path to the them file for a theme uid.
+    
+        A theme uid is of the form "theme.bundled.*" or "theme.custom.*". The 
+        returned file path is a json file that can be parsed.
+    
+        Args:
+            theme_uid (str): The theme uid
+            preference_path (str): The path to the user's preference file. Used for custom themes.
+    
+        Returns
+            str: The filesystem path to the theme json file. None if the theme is not found.
+        """
+    
+        import os
+    
+        if theme_uid.startswith("theme.custom."):
+            id = theme_uid.split('.')
+            if len(id) < 3:
+                return None
+            id = id[2]
+            path = os.path.join(preference_path, "themes", "theme.custom." + id, "theme.json")
+        
+        elif theme_uid.startswith("theme.bundled."):
+            # Get the path to the application
+            from AppKit import NSWorkspace
+            ws = NSWorkspace.sharedWorkspace()
+            url = ws.URLForApplicationWithBundleIdentifier_("com.runningwithcrayons.Alfred")
+            if not url:
+                return None
+            app_path = str(url.path())
+        
+            # Get the theme file name. I can't find an automatic conversion to the theme file.
+            theme_map = {
+                "theme.bundled.default":       "Alfred.alfredappearance",
+                "theme.bundled.dark":          "Alfred Dark.alfredappearance",
+                "theme.bundled.modern":        "Alfred Modern.alfredappearance",
+                "theme.bundled.moderndark":    "Alfred Modern Dark.alfredappearance",
+                "theme.bundled.classic":       "Alfred Classic.alfredappearance",
+                "theme.bundled.osx":           "Alfred macOS.alfredappearance",
+                "theme.bundled.osxdark":       "Alfred macOS Dark.alfredappearance",
+                "theme.bundled.frostyteal":    "Frosty Teal.alfredappearance",
+                "theme.bundled.modernavenir":  "Large Avenir.alfredappearance",
+                "theme.bundled.highcontrast":  "High Contrast.alfredappearance",
+                }
+            if theme_uid not in theme_map:
+                return None
+            path = os.path.join(app_path, "Contents", "Frameworks", "Alfred Framework.framework",
+                "Resources", theme_map[theme_uid])
+        
+        else:
+            return None
+    
+        if not os.path.isfile(path):
+            return None
+    
+        return path
+
+    def read_theme_font_name_size(self, theme_path):
+        """Get the font name and size from a theme json file.
+    
+        Args:
+            theme_path (str): The path to the theme json file.
+    
+        Returns:
+            str: The font name. ??? for the default system font.
+            float: The font size
+        """
+        import json
+    
+        f = open(theme_path, "r")
+        theme_data = json.load(f)
+        text = theme_data["alfredtheme"]["result"]["text"]
+        font = text["font"]
+        size = text["size"]
+    
+        if font == "System":
+            font = "<System>"
+    
         return font, size
 
     def format(self, weeks, title):
